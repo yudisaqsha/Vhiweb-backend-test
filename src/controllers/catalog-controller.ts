@@ -12,6 +12,12 @@ export async function showAllCatalog(req: Request, res: Response) {
       select: {
         name: true,
         vendorId: true,
+        vendors: {
+          select: {
+            name: true,
+            username: true,
+          },
+        },
       },
     });
     return res
@@ -36,6 +42,12 @@ export async function showCatalogbyId(req: Request, res: Response) {
       select: {
         name: true,
         vendorId: true,
+        vendors: {
+          select: {
+            name: true,
+            username: true,
+          },
+        },
       },
     });
     if (!catalog) {
@@ -70,6 +82,17 @@ export async function addCatalog(req: Request, res: Response) {
         name: name,
         vendorId: currentVendor.id,
       },
+      select: {
+        id: true,
+        name: true,
+        vendorId: true,
+        vendors: {
+          select: {
+            name: true,
+            username: true,
+          },
+        },
+      },
     });
     return res
       .status(200)
@@ -103,6 +126,12 @@ export async function updateCatalog(req: Request, res: Response) {
         id: true,
         name: true,
         vendorId: true,
+        vendors: {
+          select: {
+            name: true,
+            username: true,
+          },
+        },
       },
     });
     if (!catalog) {
